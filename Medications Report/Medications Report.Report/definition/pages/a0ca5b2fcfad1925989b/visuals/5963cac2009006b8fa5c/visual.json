@@ -1,0 +1,203 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "5963cac2009006b8fa5c",
+  "position": {
+    "x": 273.89128559102676,
+    "y": 446.17773943054357,
+    "z": 2000,
+    "height": 266.160483175151,
+    "width": 679.20621225194134,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Med Start Date"
+                }
+              },
+              "queryRef": "fct_medications.Med Start Date",
+              "nativeQueryRef": "Med Start Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Med End Date"
+                }
+              },
+              "queryRef": "fct_medications.Med End Date",
+              "nativeQueryRef": "Med End Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Med Description"
+                }
+              },
+              "queryRef": "fct_medications.Med Description",
+              "nativeQueryRef": "Med Description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Reason"
+                }
+              },
+              "queryRef": "fct_medications.Reason",
+              "nativeQueryRef": "Reason"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Total Cost"
+                }
+              },
+              "queryRef": "Metrics.Total Cost",
+              "nativeQueryRef": "Total Cost"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Cost Outlier Flag"
+                }
+              },
+              "queryRef": "fct_medications.Cost Outlier Flag",
+              "nativeQueryRef": "Cost Outlier Flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Fill Type"
+                }
+              },
+              "queryRef": "fct_medications.Fill Type",
+              "nativeQueryRef": "Fill Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Encounter Class"
+                }
+              },
+              "queryRef": "fct_medications.Encounter Class",
+              "nativeQueryRef": "Encounter Class"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Med Status"
+                }
+              },
+              "queryRef": "fct_medications.Med Status",
+              "nativeQueryRef": "Med Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fct_medications"
+                    }
+                  },
+                  "Property": "Patient Id"
+                }
+              },
+              "queryRef": "fct_medications.Patient Id",
+              "nativeQueryRef": "Patient Id"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fct_medications"
+                  }
+                },
+                "Property": "Med Description"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

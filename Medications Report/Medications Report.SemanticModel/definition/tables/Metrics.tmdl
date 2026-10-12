@@ -1,0 +1,143 @@
+table Metrics
+	lineageTag: 84fc0922-d612-4680-a959-afbcc7d04257
+
+	measure 'Total Cost' = SUM(fct_medications[Total Cost])
+		formatString: #,0.0
+		lineageTag: 81e42a27-1eba-41a7-9040-66ddb3c12403
+
+	measure 'Patient Responsibility' = SUM(fct_medications[Patient Responsibility]) / [Total Cost]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8627e852-a9a9-45bc-a6c2-62fb6b825148
+
+	measure 'Avg Coverage Ratio' = AVERAGE(fct_medications[Coverage Ratio])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: abb5a6f8-86a0-4522-9863-c418f5790427
+
+	measure 'Payer Coverage' = SUM(fct_medications[Payer Coverage]) / [Total Cost]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 6a208175-9c66-49c0-b0e3-3b5a64f1e45a
+
+	measure 'Avg Coverage Ratio (Hight Cost Meds)' =
+			
+			CALCULATE(
+			    [Avg Coverage Ratio],
+			    fct_medications[Cost Outlier Flag] = "High"
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: a43f4346-22e4-4914-9565-5f8c134f88d4
+
+	measure 'Avg Coverage Ratio (Low Cost Meds)' =
+			
+			CALCULATE(
+			    [Avg Coverage Ratio],
+			    fct_medications[Cost Outlier Flag] = "Low"
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: a95096a7-243d-4e47-8236-858ccdaa8e3e
+
+	measure 'Avg Coverage Ratio (Normal Cost Meds)' =
+			
+			CALCULATE(
+			    [Avg Coverage Ratio],
+			    fct_medications[Cost Outlier Flag] = "Normal"
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 049aeeb9-68ca-4491-b1d1-3add54851bef
+
+	measure 'Date Range' = MIN(dim_date[Date]) & " to " & MAX(dim_date[Date])
+		lineageTag: f8e5174d-1698-447c-a0b5-649223131fca
+
+	measure 'YoY Avg Coverage Ratio' = ```
+			
+			
+			VAR Prev_Year_Avg_Coverage_Ratio = 
+			CALCULATE(
+			    [Avg Coverage Ratio],
+			    SAMEPERIODLASTYEAR(dim_date[Date])
+			)
+			
+			VAR Avg_Coverage_Ratio = [Avg Coverage Ratio]
+			
+			RETURN
+			DIVIDE(
+			    Avg_Coverage_Ratio - Prev_Year_Avg_Coverage_Ratio,
+			    Prev_Year_Avg_Coverage_Ratio
+			)
+			```
+		lineageTag: cefa70dd-75dd-4b21-8e53-2921276d1696
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prev Qtr Avg Coverage Ratio' =
+			
+			CALCULATE(
+			    [Avg Coverage Ratio],
+			    DATEADD(dim_date[Date], -1, QUARTER)
+			)
+		lineageTag: 77a7c44a-8db2-4708-bd16-eae38031897d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Prev Month Avg Coverage Ratio' =
+			
+			CALCULATE(
+			    [Avg Coverage Ratio],
+			    PREVIOUSMONTH(dim_date[Date])
+			)
+		lineageTag: e7749635-b039-4149-8f8a-798e275f4ead
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'QoQ Avg Coverage Ratio' = ```
+			
+			
+			VAR Prev_Qtr_Avg_Coverage_Ratio = 
+			CALCULATE(
+			    [Avg Coverage Ratio],
+			    DATEADD(dim_date[Date], -1, QUARTER)
+			)
+			
+			VAR Avg_Coverage_Ratio = [Avg Coverage Ratio]
+			
+			RETURN
+			DIVIDE(
+			    Avg_Coverage_Ratio - Prev_Qtr_Avg_Coverage_Ratio,
+			    Prev_Qtr_Avg_Coverage_Ratio
+			)
+			```
+		lineageTag: 0526595d-24af-4c52-823b-e4e46b36b09d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MoM Avg Coverage Ratio' = ```
+			
+			
+			VAR Prev_Month_Avg_Coverage_Ratio = 
+			CALCULATE(
+			    [Avg Coverage Ratio],
+			    DATEADD(dim_date[Date], -1, MONTH)
+			)
+			
+			VAR Avg_Coverage_Ratio = [Avg Coverage Ratio]
+			
+			RETURN
+			DIVIDE(
+			    Avg_Coverage_Ratio - Prev_Month_Avg_Coverage_Ratio,
+			    Prev_Month_Avg_Coverage_Ratio
+			)
+			```
+		lineageTag: 8d4d9c44-8cf8-4f52-9c4e-cdb9c6e18ae6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Metrics = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

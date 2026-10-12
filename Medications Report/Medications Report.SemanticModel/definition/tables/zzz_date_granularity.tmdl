@@ -1,0 +1,51 @@
+table zzz_date_granularity
+	lineageTag: e475a5b6-dd52-4b6f-b31e-9b14c0830206
+
+	column zzz_date_granularity
+		lineageTag: c525163f-650e-425f-8326-92f6dd53db52
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'zzz_date_granularity Order'
+
+		relatedColumnDetails
+			groupByColumn: 'zzz_date_granularity Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zzz_date_granularity Fields'
+		isHidden
+		lineageTag: 03045d60-e7fb-4c1c-869b-e17c29daf445
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'zzz_date_granularity Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zzz_date_granularity Order'
+		isHidden
+		formatString: 0
+		lineageTag: 917118c3-f923-4576-92db-28fc158e187e
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition zzz_date_granularity = calculated
+		mode: import
+		source =
+				{
+				    ("Year", NAMEOF('dim_date'[Year]), 0),
+				    ("Quarter", NAMEOF('dim_date'[Quarter Year]), 1),
+				    ("Month", NAMEOF('dim_date'[Month Year]), 2),
+				    ("Week", NAMEOF('dim_date'[Week Year]), 3),
+				    ("Day", NAMEOF('dim_date'[Date]), 4)
+				}
+
+	annotation PBI_Id = dee5c86988f343c19d12fc116d795c17
+

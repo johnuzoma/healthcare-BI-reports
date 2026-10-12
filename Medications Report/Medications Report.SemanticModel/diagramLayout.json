@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 751.85714285714278,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "dim_patients",
+          "nodeLineageTag": "f56e6451-2b9b-4494-8887-706e1d47ce3a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 897,
+            "y": 14
+          },
+          "nodeIndex": "dim_payers",
+          "nodeLineageTag": "85376bae-ae75-492e-b2c3-73a63416cec2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 432,
+            "y": 14
+          },
+          "nodeIndex": "fct_medications",
+          "nodeLineageTag": "2d884901-a1d4-43af-a75d-fad3001e558f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 411,
+            "y": 414.5
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "116c69d0-cc18-4002-9bba-bcbdab499255",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1181,
+            "y": 281.25
+          },
+          "nodeIndex": "zzz_date_granularity",
+          "nodeLineageTag": "e475a5b6-dd52-4b6f-b31e-9b14c0830206",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1465,
+            "y": 0
+          },
+          "nodeIndex": "Metrics",
+          "nodeLineageTag": "84fc0922-d612-4680-a959-afbcc7d04257",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
