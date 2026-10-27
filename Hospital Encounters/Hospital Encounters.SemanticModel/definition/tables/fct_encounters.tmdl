@@ -1,0 +1,371 @@
+table fct_encounters
+	lineageTag: 2d884901-a1d4-43af-a75d-fad3001e558f
+
+	column 'Payer Coverage'
+		dataType: double
+		isHidden
+		sourceProviderType: double
+		lineageTag: 26151f35-08b3-4dd5-8e41-e5f060b8a57e
+		summarizeBy: sum
+		sourceColumn: Payer Coverage
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Encounter Class'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 61aac1d1-a577-4637-8f55-d424299fa0e7
+		summarizeBy: none
+		sourceColumn: Encounter Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Patient Id'
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(max)
+		lineageTag: 5a480869-1635-47af-9385-c4b3a093ad34
+		summarizeBy: none
+		sourceColumn: Patient Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Id'
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(max)
+		lineageTag: dcf74613-a2f4-4500-a5f7-59d886f98e89
+		summarizeBy: none
+		sourceColumn: Payer Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Encounter Id'
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(max)
+		lineageTag: c6dd4f8a-17fb-4a3e-a8b1-41d5fa124edf
+		summarizeBy: none
+		sourceColumn: Encounter Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Encounter Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7d3c6b73-1427-41aa-86af-5b67bff4236c
+		summarizeBy: none
+		sourceColumn: Encounter Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Encounter Start Time'
+		dataType: string
+		lineageTag: 5aa00a40-b17c-4cfe-88a4-600b4b84dfd3
+		summarizeBy: none
+		sourceColumn: Encounter Start Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Encounter End Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c5cf09f7-5371-47bb-8f9e-46adbbc0da06
+		summarizeBy: none
+		sourceColumn: Encounter End Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Encounter End Time'
+		dataType: string
+		lineageTag: e013b882-a506-4b04-9ee9-192d5706401a
+		summarizeBy: none
+		sourceColumn: Encounter End Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Length Of Stay Mins'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6612010a-d186-4804-9798-2ae68af6930f
+		summarizeBy: sum
+		sourceColumn: Length Of Stay Mins
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Length Of Stay Days'
+		dataType: int64
+		formatString: 0
+		lineageTag: fe26605d-6baa-48de-9412-83e2e9237ebf
+		summarizeBy: sum
+		sourceColumn: Length Of Stay Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Organization Id'
+		dataType: string
+		isHidden
+		lineageTag: 5afa744a-4b98-4ba1-a5b1-dc5371a260f0
+		summarizeBy: none
+		sourceColumn: Organization Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provider Id'
+		dataType: string
+		isHidden
+		lineageTag: 169863e7-7bf3-4111-8b01-3dd0eaceaa8f
+		summarizeBy: none
+		sourceColumn: Provider Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Base Encounter Cost'
+		dataType: double
+		isHidden
+		lineageTag: 791f2ec8-ac4a-4d17-886a-716f53ba3153
+		summarizeBy: sum
+		sourceColumn: Base Encounter Cost
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Claim Cost'
+		dataType: double
+		isHidden
+		lineageTag: c6379bbf-a5fd-47ed-8ec3-33b8135c4548
+		summarizeBy: sum
+		sourceColumn: Total Claim Cost
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Had An Allergy'
+		dataType: int64
+		formatString: 0
+		lineageTag: 612221ff-3de2-4b77-9131-cfef1c071b2f
+		summarizeBy: sum
+		sourceColumn: Had An Allergy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number Of Allergies'
+		dataType: int64
+		formatString: 0
+		lineageTag: b8101a27-0b41-4cd5-ada9-7460593f198a
+		summarizeBy: sum
+		sourceColumn: Number Of Allergies
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Had A Careplan'
+		dataType: int64
+		formatString: 0
+		lineageTag: a1f11949-2fa4-4f41-aa11-153aaf9d0255
+		summarizeBy: sum
+		sourceColumn: Had A Careplan
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number Of Careplans'
+		dataType: int64
+		formatString: 0
+		lineageTag: 81c0899f-14e3-4c7e-8ea6-cbf39c3d0299
+		summarizeBy: sum
+		sourceColumn: Number Of Careplans
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Had A Condition'
+		dataType: int64
+		formatString: 0
+		lineageTag: df4c54ee-7255-4153-9930-543d152a3584
+		summarizeBy: sum
+		sourceColumn: Had A Condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number Of Conditions'
+		dataType: int64
+		formatString: 0
+		lineageTag: 13fddfce-526c-4dcb-9d74-d6f76be55316
+		summarizeBy: sum
+		sourceColumn: Number Of Conditions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Used A Device'
+		dataType: int64
+		formatString: 0
+		lineageTag: 557494c4-525d-4e80-8d2b-fb41f52a2c4e
+		summarizeBy: sum
+		sourceColumn: Used A Device
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Device Name'
+		dataType: string
+		lineageTag: 41088d56-49be-404d-a7de-5a514a3716be
+		summarizeBy: none
+		sourceColumn: Device Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Had An Immunization'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e16b200-f497-4b74-962a-d5f345f2157c
+		summarizeBy: sum
+		sourceColumn: Had An Immunization
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number Of Immunizations'
+		dataType: int64
+		formatString: 0
+		lineageTag: df4d20c2-cfd3-4252-9813-30db90b259b1
+		summarizeBy: sum
+		sourceColumn: Number Of Immunizations
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Cost Of Immunizations'
+		dataType: double
+		isHidden
+		lineageTag: 9afbcd86-39bb-4de1-8ebc-d4f0987dc5b3
+		summarizeBy: sum
+		sourceColumn: Total Cost Of Immunizations
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Had A Procedure'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f979c40-b1c1-4653-86f6-d76090365615
+		summarizeBy: sum
+		sourceColumn: Had A Procedure
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number Of Procedures'
+		dataType: int64
+		formatString: 0
+		lineageTag: 67df4523-1aee-433d-8a54-edde22d15371
+		summarizeBy: sum
+		sourceColumn: Number Of Procedures
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Cost Of Procedures'
+		dataType: double
+		isHidden
+		lineageTag: 2f7f7c05-7b1d-4e55-a467-e0edcc7cfaff
+		summarizeBy: sum
+		sourceColumn: Total Cost Of Procedures
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Admitted Within 10D'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b2bfe1b-d8a0-4894-9479-9adfa5d1adc2
+		summarizeBy: sum
+		sourceColumn: Admitted Within 10D
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Admitted Within 10D Reason'
+		dataType: string
+		lineageTag: 0ba6ec6c-00e0-4d40-8403-23782137648d
+		summarizeBy: none
+		sourceColumn: Admitted Within 10D Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Admitted Within 10D Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d84030fc-823a-493f-9b71-a735d0110aac
+		summarizeBy: none
+		sourceColumn: Admitted Within 10D Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Admitted Within 10D Start Time'
+		dataType: string
+		lineageTag: 333278a1-311b-4b24-a7f9-455de4d36fc3
+		summarizeBy: none
+		sourceColumn: Admitted Within 10D Start Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Encounter Reason'
+		dataType: string
+		lineageTag: 3c31f0ae-0e30-4324-9f73-7534bbfc2c66
+		summarizeBy: none
+		sourceColumn: Encounter Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Encounter Billing Type'
+		dataType: string
+		lineageTag: 3916f2b6-246b-4f41-908c-eecbf855a4bb
+		summarizeBy: none
+		sourceColumn: Encounter Billing Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_encounters = m
+		mode: import
+		queryGroup: fact
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-804f31be-34e5.cloud.databricks.com", "/sql/1.0/warehouses/d96e38edcb956a66", [Catalog="synthea_ehr", Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation=null, Protocol=null]),
+				    synthea_ehr_Database = Source{[Name="synthea_ehr",Kind="Database"]}[Data],
+				    #"3_gold_Schema" = synthea_ehr_Database{[Name="3_gold",Kind="Schema"]}[Data],
+				    fct_medications_Table = #"3_gold_Schema"{[Name="fct_encounters",Kind="Table"]}[Data],
+				    #"Standardized Field Names" = Table.TransformColumnNames(
+				        fct_medications_Table,
+				        each Text.Proper(Text.Replace(_, "_", " "))
+				    )
+				in
+				    #"Standardized Field Names"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

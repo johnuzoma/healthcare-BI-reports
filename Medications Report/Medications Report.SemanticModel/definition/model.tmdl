@@ -1,0 +1,24 @@
+model Model
+	culture: en-IE
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IE
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dim_patients","dim_payers","dim_date","fct_medications","min_date","max_date","Metrics"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_patients
+ref table dim_payers
+ref table fct_medications
+ref table dim_date
+ref table zzz_date_granularity
+ref table Metrics
+
+ref cultureInfo en-IE
+

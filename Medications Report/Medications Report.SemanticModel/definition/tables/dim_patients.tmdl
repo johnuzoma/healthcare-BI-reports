@@ -1,0 +1,108 @@
+table dim_patients
+	lineageTag: f56e6451-2b9b-4494-8887-706e1d47ce3a
+
+	column 'Marital Status'
+		dataType: string
+		lineageTag: cacb9208-ad24-49fe-8219-f1b34bfe60ef
+		summarizeBy: none
+		sourceColumn: Marital Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Race
+		dataType: string
+		lineageTag: 0c270a51-8180-4a75-a4a0-7cc996b3b2f4
+		summarizeBy: none
+		sourceColumn: Race
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ethnicity
+		dataType: string
+		lineageTag: 9daa8547-47fd-451f-8f11-a0435f610495
+		summarizeBy: none
+		sourceColumn: Ethnicity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: bc569794-f3a1-45cd-9518-00e149f6569f
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Alive'
+		dataType: string
+		lineageTag: 87bee9e0-dfcc-4df7-880a-1fe9142c7df6
+		summarizeBy: none
+		sourceColumn: Is Alive
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 0482840c-6629-4005-a216-ca77297e9a22
+		summarizeBy: none
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Years Since Death'
+		dataType: int64
+		formatString: 0
+		lineageTag: a8efeee3-56f6-4cc2-ad09-28bc2ec8f78d
+		summarizeBy: none
+		sourceColumn: Years Since Death
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: 7fb0609f-0fda-475a-9170-4f8e48b66b07
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Patient State'
+		dataType: string
+		lineageTag: d0bad37c-dfba-4b50-a3b6-4908857bba57
+		summarizeBy: none
+		sourceColumn: Patient State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Band'
+		dataType: string
+		lineageTag: 280d9572-4fa4-4c05-8c8f-1fddb2ff2a0f
+		summarizeBy: none
+		sourceColumn: Age Band
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_patients = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-804f31be-34e5.cloud.databricks.com", "/sql/1.0/warehouses/d96e38edcb956a66", [Catalog="synthea_ehr", Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation=null, Protocol=null]),
+				    synthea_ehr_Database = Source{[Name="synthea_ehr",Kind="Database"]}[Data],
+				    #"3_gold_Schema" = synthea_ehr_Database{[Name="3_gold",Kind="Schema"]}[Data],
+				    dim_patients_Table = #"3_gold_Schema"{[Name="dim_patients",Kind="Table"]}[Data],
+				    #"Removed Underscores" = Table.TransformColumnNames(
+				        dim_patients_Table,
+				        each Text.Replace(_, "_", " ")
+				    ),
+				    #"Capitalized Field Names" = Table.TransformColumnNames(
+				        #"Removed Underscores",
+				        each Text.Proper(_)
+				    )
+				    in
+				        #"Capitalized Field Names"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "f879f3f12272e46fdcfa",
+  "displayName": "Encounter Features",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "4a16de350ec086418a6e",
+      "target": "44262894b4de7854f366",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4a16de350ec086418a6e",
+      "target": "9c8d08d1d71f04958091",
+      "type": "DataFilter"
+    }
+  ]
+}

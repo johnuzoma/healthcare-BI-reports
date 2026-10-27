@@ -1,0 +1,12 @@
+relationship 6f19be84-6ab7-a512-4225-3aeca7fe70a4
+	fromColumn: fct_medications.'Med Start Date'
+	toColumn: dim_date.Date
+
+relationship c93afdec-6a29-cc3d-76b9-27bba3f09189
+	fromColumn: fct_medications.'Patient Id'
+	toColumn: dim_patients.Id
+
+relationship 5b19c92a-5ec2-99cc-a05b-732671fa19a4
+	fromColumn: fct_medications.'Payer Id'
+	toColumn: dim_payers.Id
+

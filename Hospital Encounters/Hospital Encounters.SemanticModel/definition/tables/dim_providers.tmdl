@@ -1,0 +1,124 @@
+table dim_providers
+	lineageTag: 770bb60f-c121-46eb-9785-d9c3b4439fac
+
+	column Id
+		dataType: string
+		lineageTag: 3dedd426-ef6a-4dff-bb06-ef9a8d176855
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Organization Id'
+		dataType: string
+		lineageTag: 4fea09f0-0b11-474a-a59d-ff9a9dabfdd4
+		summarizeBy: none
+		sourceColumn: Organization Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provider Name'
+		dataType: string
+		lineageTag: 94cf9bf5-bc46-4e3a-b74e-1fe802d1a280
+		summarizeBy: none
+		sourceColumn: Provider Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: e8e604ad-8057-4815-965e-0d0d00c019aa
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Specialty
+		dataType: string
+		lineageTag: 60445781-1bc7-445e-996e-26c367159f36
+		summarizeBy: none
+		sourceColumn: Specialty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provider Address'
+		dataType: string
+		lineageTag: d112a831-5da2-466c-b61f-dd7971ed7d02
+		summarizeBy: none
+		sourceColumn: Provider Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 4340d37e-bd92-44d7-ba19-7f9fbd9bef42
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Provider State'
+		dataType: string
+		lineageTag: 2418880c-4081-4c78-be34-ac882b5e49db
+		summarizeBy: none
+		sourceColumn: Provider State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip
+		dataType: string
+		lineageTag: 4a96c453-791f-4e31-a927-d77078afab17
+		summarizeBy: none
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lat
+		dataType: double
+		lineageTag: 7f9c2def-7720-4eb0-a121-db8baf1a87d4
+		summarizeBy: none
+		sourceColumn: Lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Lon
+		dataType: double
+		lineageTag: 616792b0-2a46-4654-b963-16427f845b6f
+		summarizeBy: none
+		sourceColumn: Lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Utilization
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bb06b67-9caf-45db-9442-a812f6ad1495
+		summarizeBy: none
+		sourceColumn: Utilization
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_providers = m
+		mode: import
+		queryGroup: dimensions
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-804f31be-34e5.cloud.databricks.com", "/sql/1.0/warehouses/d96e38edcb956a66", [Catalog="synthea_ehr", Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation=null, Protocol=null]),
+				    synthea_ehr_Database = Source{[Name="synthea_ehr",Kind="Database"]}[Data],
+				    #"3_gold_Schema" = synthea_ehr_Database{[Name="3_gold",Kind="Schema"]}[Data],
+				    dim_patients_Table = #"3_gold_Schema"{[Name="dim_providers",Kind="Table"]}[Data],
+				    #"Standardized Field Names" = Table.TransformColumnNames(
+				        dim_patients_Table,
+				        each Text.Proper(Text.Replace(_, "_", " "))
+				    )
+				in
+				    #"Standardized Field Names"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

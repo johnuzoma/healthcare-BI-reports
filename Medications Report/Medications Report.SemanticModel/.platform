@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Medications Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "669a2529-50f9-4502-bd02-4c9f6bda6868"
+  }
+}

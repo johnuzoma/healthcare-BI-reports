@@ -1,0 +1,26 @@
+expression min_date =
+		let
+		    Source = fct_encounters,
+		    #"Removed Other Columns" = Table.SelectColumns(Source,{"Encounter Start Date"}),
+		    #"Calculated Earliest" = List.Min(#"Removed Other Columns"[Encounter Start Date])
+		in
+		    #"Calculated Earliest"
+	lineageTag: 014c1364-250c-4907-ba80-601a3feea49d
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Date
+
+expression max_date =
+		let
+		    Source = fct_encounters,
+		    #"Removed Other Columns" = Table.SelectColumns(Source,{"Encounter Start Date"}),
+		    #"Calculated Latest" = List.Max(#"Removed Other Columns"[Encounter Start Date])
+		in
+		    #"Calculated Latest"
+	lineageTag: b18674f0-675b-4c04-bdb7-d24357fd037e
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Date
+

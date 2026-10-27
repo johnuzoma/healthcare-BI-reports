@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "4d33fbbef1f6807c4a7b",
+  "displayName": "Payer Performance",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "341a395e133d5185a96b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_payers"
+              }
+            },
+            "Property": "Payer Name"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dim_payers",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Payer Name"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'NO_INSURANCE'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "464595501a398aa7b2a8",
+      "target": "5f1391da7b58ba59ac81",
+      "type": "NoFilter"
+    },
+    {
+      "source": "464595501a398aa7b2a8",
+      "target": "7b4872c5a5e547982d57",
+      "type": "NoFilter"
+    },
+    {
+      "source": "464595501a398aa7b2a8",
+      "target": "998960e92c2473f19059",
+      "type": "NoFilter"
+    },
+    {
+      "source": "464595501a398aa7b2a8",
+      "target": "1e24077e46ebc323e6ee",
+      "type": "DataFilter"
+    }
+  ]
+}

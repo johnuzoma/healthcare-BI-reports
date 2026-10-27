@@ -1,0 +1,52 @@
+table zzz_features
+	lineageTag: f72614e5-cb7f-4535-81ec-60e28397e1cd
+
+	column zzz_features
+		lineageTag: d7163d30-98e4-482f-81f9-ca5f11184fda
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'zzz_features/diagnosis Order'
+
+		relatedColumnDetails
+			groupByColumn: 'zzz_features/diagnosis Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zzz_features/diagnosis Fields'
+		isHidden
+		lineageTag: f322af0b-666a-45a2-9b55-62ff5c76670f
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'zzz_features/diagnosis Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zzz_features/diagnosis Order'
+		isHidden
+		formatString: 0
+		lineageTag: b45139c3-a2f5-4547-b277-ea9b9c69f23b
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition zzz_features = calculated
+		mode: import
+		source =
+				{
+				    ("With Careplans", NAMEOF('Metrics'[With Careplans]), 0),
+				    ("With Procedures", NAMEOF('Metrics'[With Procedures]), 1),
+				    ("With Devices", NAMEOF('Metrics'[With Devices]), 2),
+				    ("With Immunizations", NAMEOF('Metrics'[With Immunizations]), 3),
+				    ("With Allergies", NAMEOF('Metrics'[With Allergies]), 4),
+				    ("With Conditions", NAMEOF('Metrics'[With Conditions]), 5)
+				}
+
+	annotation PBI_Id = 934993de67e54d0e893d702e44871f05
+

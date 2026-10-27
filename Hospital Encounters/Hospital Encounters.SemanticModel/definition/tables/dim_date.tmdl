@@ -1,0 +1,125 @@
+table dim_date
+	lineageTag: 116c69d0-cc18-4002-9bba-bcbdab499255
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: eaf6cbf2-a3f3-491d-a962-04347837e5e4
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: e78e08d8-540f-4e5a-9ed3-0f8970b9a886
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Year'
+		dataType: string
+		lineageTag: 8a89896b-9992-458c-a7bc-18008f1b880c
+		summarizeBy: none
+		sourceColumn: Quarter Year
+		sortByColumn: 'Year Quarter Number'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year'
+		dataType: string
+		lineageTag: 410e49c4-9180-4ce9-a499-0190951a10eb
+		summarizeBy: none
+		sourceColumn: Month Year
+		sortByColumn: 'Year Month Number'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Year'
+		dataType: string
+		lineageTag: 574076fa-139a-42e9-afe5-c334e145b17c
+		summarizeBy: none
+		sourceColumn: Week Year
+		sortByColumn: 'Year Week Number'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Quarter Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9abf4922-9545-4040-a7cc-ee0d16c7ba7f
+		summarizeBy: none
+		sourceColumn: Year Quarter Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ddcb3a4-e67f-4baa-84b7-e01bef74ba91
+		summarizeBy: none
+		sourceColumn: Year Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Week Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 92c431e4-07d4-43ef-aa78-f837be2231a8
+		summarizeBy: none
+		sourceColumn: Year Week Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Weekend'
+		dataType: int64
+		formatString: 0
+		lineageTag: b9a1edef-708e-456e-aa04-6bb233db106a
+		summarizeBy: none
+		sourceColumn: Is Weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Future'
+		dataType: int64
+		formatString: 0
+		lineageTag: 95c5bd56-bf1f-41b8-8f30-aa74f309bce0
+		summarizeBy: none
+		sourceColumn: Is Future
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		queryGroup: dimensions
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-804f31be-34e5.cloud.databricks.com", "/sql/1.0/warehouses/d96e38edcb956a66", [Catalog="synthea_ehr", Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation=null, Protocol=null]),
+				    synthea_ehr_Database = Source{[Name="synthea_ehr",Kind="Database"]}[Data],
+				    #"3_gold_Schema" = synthea_ehr_Database{[Name="3_gold",Kind="Schema"]}[Data],
+				    dim_date_Table = #"3_gold_Schema"{[Name="dim_date",Kind="Table"]}[Data],
+				    #"Standardized Field Names" = Table.TransformColumnNames(
+				        dim_date_Table,
+				        each Text.Proper(Text.Replace(_, "_", " "))
+				    ),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Standardized Field Names",{{"Date", type date}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [Date] >= min_date and [Date] <= max_date)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

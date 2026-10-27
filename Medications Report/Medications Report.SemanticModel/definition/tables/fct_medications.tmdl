@@ -1,0 +1,243 @@
+table fct_medications
+	lineageTag: 2d884901-a1d4-43af-a75d-fad3001e558f
+
+	column 'Base Cost'
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 7e9c3d1b-22be-43f4-b570-f5c8d503dcb8
+		summarizeBy: sum
+		sourceColumn: Base Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Payer Coverage'
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 26151f35-08b3-4dd5-8e41-e5f060b8a57e
+		summarizeBy: sum
+		sourceColumn: Payer Coverage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Dispenses
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: c942984a-b54e-4887-8c34-8fa1510f3ee3
+		summarizeBy: sum
+		sourceColumn: Dispenses
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Cost'
+		dataType: double
+		sourceProviderType: double
+		lineageTag: bf45ce08-0d32-4f94-98bc-b814a368f980
+		summarizeBy: sum
+		sourceColumn: Total Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Reason
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 035cd0f8-4453-41a0-a009-a048938b97fd
+		summarizeBy: none
+		sourceColumn: Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days Since Last Fill Ended'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 44bc10e8-ea4e-4ba1-8dd9-b5702dbf4d52
+		summarizeBy: sum
+		sourceColumn: Days Since Last Fill Ended
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Encounter Class'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 61aac1d1-a577-4637-8f55-d424299fa0e7
+		summarizeBy: none
+		sourceColumn: Encounter Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Patient Responsibility'
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 0c43dc32-cf07-4bb8-9105-854b0d3bc1c9
+		summarizeBy: sum
+		sourceColumn: Patient Responsibility
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Coverage Ratio'
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 7f2f75ee-4401-4135-88ce-0a53778d0417
+		summarizeBy: sum
+		sourceColumn: Coverage Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Days Supply'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 4123b7fb-4d0e-4954-9848-50f444912d7c
+		summarizeBy: sum
+		sourceColumn: Days Supply
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fill Type'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 2864585c-bbb5-4d6d-8830-6aac5e25ef26
+		summarizeBy: none
+		sourceColumn: Fill Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Adherence Flag'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 34ffb5a9-9a88-429a-b192-c615f40ab757
+		summarizeBy: none
+		sourceColumn: Adherence Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Outlier Flag'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: bcdcb149-3010-47dc-91fc-8c16b441c5d9
+		summarizeBy: none
+		sourceColumn: Cost Outlier Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Med Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: cc28a41a-c7f3-4f6d-adcb-a97a30874cff
+		summarizeBy: none
+		sourceColumn: Med Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Med Start Time'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: e64ad6f2-e29a-44c6-9cb0-2bc4e2fee424
+		summarizeBy: none
+		sourceColumn: Med Start Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Med End Date'
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: f82ec0ac-53db-40ba-9c44-5139d8ede69e
+		summarizeBy: none
+		sourceColumn: Med End Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Med End Time'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: ac85f583-2afe-47c6-86d7-0622dc93004c
+		summarizeBy: none
+		sourceColumn: Med End Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Patient Id'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 5a480869-1635-47af-9385-c4b3a093ad34
+		summarizeBy: none
+		sourceColumn: Patient Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Id'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: dcf74613-a2f4-4500-a5f7-59d886f98e89
+		summarizeBy: none
+		sourceColumn: Payer Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Encounter Id'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: c6dd4f8a-17fb-4a3e-a8b1-41d5fa124edf
+		summarizeBy: none
+		sourceColumn: Encounter Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Med Description'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: d68e2db2-ea0c-4f41-a001-ff4da9f6e52d
+		summarizeBy: none
+		sourceColumn: Med Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Med Status'
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 3c12022b-79a1-4cbf-b38c-db965d82c1c1
+		summarizeBy: none
+		sourceColumn: Med Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fct_medications = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-804f31be-34e5.cloud.databricks.com", "/sql/1.0/warehouses/d96e38edcb956a66", [Catalog="synthea_ehr", Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation=null, Protocol=null]),
+				    synthea_ehr_Database = Source{[Name="synthea_ehr",Kind="Database"]}[Data],
+				    #"3_gold_Schema" = synthea_ehr_Database{[Name="3_gold",Kind="Schema"]}[Data],
+				    fct_medications_Table = #"3_gold_Schema"{[Name="fct_medications",Kind="Table"]}[Data],
+				    #"Removed Underscores" = Table.TransformColumnNames(
+				        fct_medications_Table,
+				        each Text.Replace(_, "_", " ")
+				    ),
+				    #"Capitalized Field Names" = Table.TransformColumnNames(
+				        #"Removed Underscores",
+				        each Text.Proper(_)
+				    )
+				    in
+				        #"Capitalized Field Names"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

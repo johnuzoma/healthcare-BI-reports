@@ -1,0 +1,141 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU07",
+      "reportVersionAtImport": {
+        "visual": "2.11.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU07",
+          "path": "BaseThemes/CY26SU07.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "admission_within_10_days21812227887569424.svg",
+          "path": "admission_within_10_days21812227887569424.svg",
+          "type": "Image"
+        },
+        {
+          "name": "allergy20018753470660722.svg",
+          "path": "allergy20018753470660722.svg",
+          "type": "Image"
+        },
+        {
+          "name": "base_cost5116615312024043.svg",
+          "path": "base_cost5116615312024043.svg",
+          "type": "Image"
+        },
+        {
+          "name": "careplan7671205381943255.svg",
+          "path": "careplan7671205381943255.svg",
+          "type": "Image"
+        },
+        {
+          "name": "condition846139120654571.svg",
+          "path": "condition846139120654571.svg",
+          "type": "Image"
+        },
+        {
+          "name": "device26972173575442093.svg",
+          "path": "device26972173575442093.svg",
+          "type": "Image"
+        },
+        {
+          "name": "immunization5664468900127576.svg",
+          "path": "immunization5664468900127576.svg",
+          "type": "Image"
+        },
+        {
+          "name": "immunization8195076913873951.svg",
+          "path": "immunization8195076913873951.svg",
+          "type": "Image"
+        },
+        {
+          "name": "non_ip_visit8361179797923158.svg",
+          "path": "non_ip_visit8361179797923158.svg",
+          "type": "Image"
+        },
+        {
+          "name": "payer_coverage7411529006764622.svg",
+          "path": "payer_coverage7411529006764622.svg",
+          "type": "Image"
+        },
+        {
+          "name": "procedure34527338978445554.svg",
+          "path": "procedure34527338978445554.svg",
+          "type": "Image"
+        },
+        {
+          "name": "procedure38070112133490097.svg",
+          "path": "procedure38070112133490097.svg",
+          "type": "Image"
+        },
+        {
+          "name": "synthea_sprites-1-long-trans7160002341956615.png",
+          "path": "synthea_sprites-1-long-trans7160002341956615.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

@@ -1,0 +1,23 @@
+table Titles
+	lineageTag: eab19533-37bb-453d-b2d2-40aa8ae9772f
+
+	measure Donut = SELECTEDVALUE(zzz_costs[Title])
+		lineageTag: 534f5a53-744c-4afa-948e-2327c4497064
+
+	measure 'Horizontal Bar' = SELECTEDVALUE(zzz_costs[Title]) & " by Class"
+		lineageTag: cef9dbcd-81e8-4f99-8867-b00cfac47096
+
+	measure 'Vertical Bar' = SELECTEDVALUE(zzz_costs[Title]) & " by " & SELECTEDVALUE(zzz_date_granularity[Title])
+		lineageTag: 2ec4bea2-b03a-41a2-a79b-19de8ce110de
+
+	partition Titles = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

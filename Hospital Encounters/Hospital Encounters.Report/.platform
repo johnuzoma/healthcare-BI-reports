@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Hospital Encounters"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5cbebe2d-d5e1-42c0-ba21-feddf2ccdada"
+  }
+}

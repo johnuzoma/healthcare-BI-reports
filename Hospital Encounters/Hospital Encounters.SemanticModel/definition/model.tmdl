@@ -1,0 +1,38 @@
+model Model
+	culture: en-IE
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IE
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup dimensions
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup fact
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dim_patients","dim_payers","dim_date","dim_organizations","dim_providers","fct_encounters","min_date","max_date","Metrics","Titles"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_patients
+ref table dim_payers
+ref table fct_encounters
+ref table dim_date
+ref table zzz_date_granularity
+ref table Metrics
+ref table dim_organizations
+ref table dim_providers
+ref table zzz_costs
+ref table zzz_display_by
+ref table zzz_features
+ref table Titles
+
+ref cultureInfo en-IE
+
