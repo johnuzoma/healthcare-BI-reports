@@ -1,0 +1,177 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 974.99999999999977,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 441.42857142857144
+          },
+          "nodeIndex": "dim_patients",
+          "nodeLineageTag": "f56e6451-2b9b-4494-8887-706e1d47ce3a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 865.57142857142856,
+            "y": 455.42857142857144
+          },
+          "nodeIndex": "dim_payers",
+          "nodeLineageTag": "85376bae-ae75-492e-b2c3-73a63416cec2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 91,
+            "y": 877.35714285714289
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "116c69d0-cc18-4002-9bba-bcbdab499255",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1443.8571428571429,
+            "y": 504.10714285714283
+          },
+          "nodeIndex": "zzz_date_granularity",
+          "nodeLineageTag": "e475a5b6-dd52-4b6f-b31e-9b14c0830206",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1465,
+            "y": 0
+          },
+          "nodeIndex": "Metrics",
+          "nodeLineageTag": "84fc0922-d612-4680-a959-afbcc7d04257",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 400.57142857142856,
+            "y": 455.42857142857144
+          },
+          "nodeIndex": "fct_encounters",
+          "nodeLineageTag": "2d884901-a1d4-43af-a75d-fad3001e558f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 401.85714285714289,
+            "y": 0
+          },
+          "nodeIndex": "dim_organizations",
+          "nodeLineageTag": "ea14b909-5c9c-488b-ac30-ae60b26df9ed",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 753.00000000000011,
+            "y": 844.39285714285722
+          },
+          "nodeIndex": "dim_providers",
+          "nodeLineageTag": "770bb60f-c121-46eb-9785-d9c3b4439fac",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1749,
+            "y": 512.67857142857144
+          },
+          "nodeIndex": "zzz_costs",
+          "nodeLineageTag": "c60dc4cb-79b9-47d1-aaa6-30f7d990c608",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2033,
+            "y": 512.67857142857144
+          },
+          "nodeIndex": "zzz_display_by",
+          "nodeLineageTag": "e4ffc3d0-459f-460c-ba81-e74e175fe118",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2317,
+            "y": 512.67857142857144
+          },
+          "nodeIndex": "zzz_features",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2601,
+            "y": 536.67857142857144
+          },
+          "nodeIndex": "Titles",
+          "nodeLineageTag": "eab19533-37bb-453d-b2d2-40aa8ae9772f",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "b78751b0a4071993750c",
+  "displayName": "Cost Overview",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "322128aded2db05d0706",
+      "target": "e0ef59cc5b3a025d0e41",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3f517395c3000506dade",
+      "target": "e0ef59cc5b3a025d0e41",
+      "type": "NoFilter"
+    }
+  ]
+}

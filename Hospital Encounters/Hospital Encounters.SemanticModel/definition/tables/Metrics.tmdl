@@ -1,0 +1,303 @@
+table Metrics
+	lineageTag: 84fc0922-d612-4680-a959-afbcc7d04257
+
+	measure 'Base Cost of Encounters' = SUM(fct_encounters[Base Encounter Cost])
+		formatString: #,0.0
+		displayFolder: Costs
+		lineageTag: 81e42a27-1eba-41a7-9040-66ddb3c12403
+
+	measure 'Date Range' = MIN(dim_date[Date]) & " to " & MAX(dim_date[Date])
+		lineageTag: f8e5174d-1698-447c-a0b5-649223131fca
+
+	measure 'No. of Encounters' = COUNTROWS(fct_encounters)
+		formatString: #,0
+		displayFolder: Features/Diagnosis
+		lineageTag: e7e13f92-54da-4f64-9c5b-06d2d34ba310
+
+	measure 'Payer Coverage' = SUM(fct_encounters[Payer Coverage]) /// [Total Cost]
+		formatString: #,0.0
+		displayFolder: Costs
+		lineageTag: 64057f4e-1145-47e8-af6a-a23a54ab78a4
+
+	measure 'Cost of Immunizations' = SUM(fct_encounters[Total Cost Of Immunizations])
+		formatString: #,0.0
+		displayFolder: Costs
+		lineageTag: 0ce2bc2e-3204-4b4e-a056-f5a1a795cca7
+
+	measure 'Cost of Procedures' = SUM(fct_encounters[Total Cost Of Procedures])
+		formatString: #,0.0
+		displayFolder: Costs
+		lineageTag: 4328a8dd-4d9c-4fc1-9d43-eed4bf88f0d6
+
+	measure 'Total Claim Cost' = SUM(fct_encounters[Total Claim Cost])
+		formatString: #,0.0
+		displayFolder: Costs
+		lineageTag: 6f8a24f7-f0a2-42a2-b95a-75d012ca885f
+
+	measure 'Prev Period' =
+			
+			SWITCH(
+			    TRUE(),
+			    ISINSCOPE('dim_date'[Month Year]),   CALCULATE([Selected Cost Metric], DATEADD('dim_date'[Date], -1, MONTH)),
+			    ISINSCOPE('dim_date'[Quarter Year]), CALCULATE([Selected Cost Metric], DATEADD('dim_date'[Date], -1, QUARTER)),
+			    ISINSCOPE('dim_date'[Year]),    CALCULATE([Selected Cost Metric], DATEADD('dim_date'[Date], -1, YEAR))
+			)
+		displayFolder: Costs
+		lineageTag: 79000e22-ee32-4535-a372-29ca61d5f137
+
+	measure 'Selected Cost Metric' =
+			
+			SWITCH(
+			    SELECTEDVALUE(zzz_costs[zzz_costs Order]),
+			    0, [Base Cost of Encounters],
+			    1, [Cost of Immunizations],
+			    2, [Cost of Procedures],
+			    3, [Payer Coverage]
+			)
+		displayFolder: Costs
+		lineageTag: 6100f8bb-26cd-4f4b-9d54-5650df29a90e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Trend =
+			
+			VAR _prev = [Prev Period]
+			VAR _cur = [Selected Cost Metric]
+			
+			RETURN
+			IF(
+			    ISBLANK(_prev),
+			    BLANK(),
+			    SIGN(_cur - _prev)
+			)
+		formatString: 0
+		displayFolder: Costs
+		lineageTag: 27e7fbc6-8ad6-4d05-910c-648d42bfed14
+
+	measure 'Admissions Within 10 Days' =
+			
+			CALCULATE(
+			    [No. of Encounters],
+			    fct_encounters[Admitted Within 10D] = 1,
+			    USERELATIONSHIP(dim_date[Date], fct_encounters[Admitted Within 10D Start Date])
+			)
+		formatString: 0
+		displayFolder: Admissions Within 10d
+		lineageTag: 3079177e-5190-4954-928b-92b583d966a2
+
+	measure 'Non-inpatient Encounters' =
+			
+			CALCULATE(
+			    [No. of Encounters],
+			    fct_encounters[Encounter Class] <> "Inpatient"
+			)
+		formatString: #,0
+		displayFolder: Admissions Within 10d
+		lineageTag: 59353353-0075-48a8-b412-ab54f91f460f
+
+	measure '% Admissions Within 10 Days' =
+			
+			DIVIDE(
+			    [Admissions Within 10 Days],
+			    [Non-inpatient Encounters]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Admissions Within 10d
+		lineageTag: cf13c79c-b3f5-40df-be98-2b97d50db97a
+
+	measure 'Admissions Within 10d Threshold' = 0.02
+		displayFolder: Admissions Within 10d
+		lineageTag: 585d29a1-d529-4db3-912a-ab7b97664516
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Relative to Threshold (Formatted)' = ```
+			
+			VAR _value = [% Relative to Threshold]
+			
+			RETURN 
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(_value), BLANK(),
+			        _value < 0, "(" & UNICHAR(9660) & " " & FORMAT(ABS(_value), "0%") & ")",
+			        _value > 0, "(" & UNICHAR(9650) & " " & FORMAT(ABS(_value), "0%") & ")"
+			    )
+			    
+			```
+		displayFolder: Admissions Within 10d
+		lineageTag: fc843e5f-f430-43f8-8e71-67b3b9388bd6
+
+	measure '% Relative to Threshold' =
+			
+			DIVIDE(
+			    [% Admissions Within 10 Days] - [Admissions Within 10d Threshold],
+			    [Admissions Within 10d Threshold]
+			)
+		displayFolder: Admissions Within 10d
+		lineageTag: 66c75587-eca3-445d-b442-7739fd675d57
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'With Devices' =
+			
+			CALCULATE(
+			    [No. of Encounters],
+			    fct_encounters[Used A Device] = 1
+			)
+		formatString: #,0
+		displayFolder: Features/Diagnosis
+		lineageTag: 0bb3456c-1c56-48b1-ae65-e435e8dff559
+
+	measure 'With Careplans' =
+			
+			CALCULATE(
+			    [No. of Encounters],
+			    fct_encounters[Had A Careplan] = 1
+			)
+		formatString: #,0
+		displayFolder: Features/Diagnosis
+		lineageTag: 56c896c3-5969-4998-9e89-94680ba57a97
+
+	measure 'With Procedures' =
+			
+			CALCULATE(
+			    [No. of Encounters],
+			    fct_encounters[Had A Procedure] = 1
+			)
+		formatString: #,0
+		displayFolder: Features/Diagnosis
+		lineageTag: 8276547a-7815-43b3-861a-467ddb271325
+
+	measure 'With Conditions' =
+			
+			CALCULATE(
+			    [No. of Encounters],
+			    fct_encounters[Had A Condition] = 1
+			)
+		formatString: #,0
+		displayFolder: Features/Diagnosis
+		lineageTag: ae370c33-7ad0-4f9d-a022-3cfa886ade80
+
+	measure 'With Allergies' =
+			
+			CALCULATE(
+			    [No. of Encounters],
+			    fct_encounters[Had An Allergy] = 1
+			)
+		formatString: #,0
+		displayFolder: Features/Diagnosis
+		lineageTag: 3f99fd09-a670-40a5-be8a-d3904747e11e
+
+	measure 'No. of Immunizations' = SUM(fct_encounters[Number Of Immunizations])
+		formatString: 0
+		displayFolder: Features/Diagnosis
+		lineageTag: ff107919-6f74-4230-a2ca-42c7eeba2900
+
+	measure 'No. of Procedures' = SUM(fct_encounters[Number Of Procedures])
+		formatString: 0
+		displayFolder: Features/Diagnosis
+		lineageTag: bfb9f638-c043-4095-a67f-6f5434f76e86
+
+	measure 'No. of Careplans' = SUM(fct_encounters[Number Of Careplans])
+		formatString: 0
+		displayFolder: Features/Diagnosis
+		lineageTag: ce80bbac-66d1-4972-8bb4-c744166dfb49
+
+	measure 'No. of Conditions' = SUM(fct_encounters[Number Of Conditions])
+		formatString: 0
+		displayFolder: Features/Diagnosis
+		lineageTag: 2fba221a-a669-4936-886f-373fd98190aa
+
+	measure 'Number Per Encounter' =
+			
+			SWITCH(
+			    SELECTEDVALUE('zzz_features'[zzz_features/diagnosis Order]),
+			    0, [No. of Careplans],
+			    1, [No. of Procedures],
+			    2, COUNT(fct_encounters[Device Name]),
+			    3, [No. of Immunizations],
+			    4, [No. of Allergies],
+			    5, [No. of Conditions]
+			)
+		formatString: 0
+		displayFolder: Features/Diagnosis
+		lineageTag: 85da2afd-89bd-46a1-8015-ea32d7f43b78
+
+	measure 'With Immunizations' =
+			
+			CALCULATE(
+			    [No. of Encounters],
+			    fct_encounters[Had An Immunization] = 1
+			)
+		formatString: 0
+		displayFolder: Features/Diagnosis
+		lineageTag: 272b50aa-be08-4ca8-8d77-a64e63ad9a0d
+
+	measure 'No. of Allergies' = SUM(fct_encounters[Number Of Allergies])
+		formatString: 0
+		displayFolder: Features/Diagnosis
+		lineageTag: 8fc85d61-0ab8-4b86-b9be-fdf914c960ff
+
+	measure 'Selected Feature' =
+			
+			SWITCH(
+			    SELECTEDVALUE('zzz_features'[zzz_features/diagnosis Order]),
+			    0, [With Careplans],
+			    1, [With Procedures],
+			    2, [With Devices],
+			    3, [With Immunizations],
+			    4, [With Allergies],
+			    5, [With Conditions]
+			)
+		formatString: #,0
+		displayFolder: Features/Diagnosis
+		lineageTag: 9320e782-4f30-4de6-a542-8aaef6c2ac3f
+
+	measure '% Relative to Threshold Color' =
+			
+			SWITCH(
+			    TRUE(),
+			    [% Relative to Threshold] < 0, "#14962A",
+			    [% Relative to Threshold] > 0, "#ED0A0A",
+			    "#ffffff"
+			)
+		displayFolder: Admissions Within 10d
+		lineageTag: 7439c818-7a0c-40d1-a296-0dd0a4204fdb
+
+	measure '% FPPs' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        [No. of Encounters],
+			        fct_encounters[Encounter Billing Type] = "FPP"
+			    ),
+			    [No. of Encounters]
+			)
+		formatString: 0
+		displayFolder: Costs
+		lineageTag: 2600e1e1-b7e4-48e7-a87a-9f9a2ced18c7
+
+	measure '% Per Diems' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        [No. of Encounters],
+			        fct_encounters[Encounter Billing Type] = "Per Diem"
+			    ),
+			    [No. of Encounters]
+			)
+		formatString: 0
+		displayFolder: Costs
+		lineageTag: 1784811d-88bb-4a96-a0af-bdb9374c64e6
+
+	partition Metrics = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

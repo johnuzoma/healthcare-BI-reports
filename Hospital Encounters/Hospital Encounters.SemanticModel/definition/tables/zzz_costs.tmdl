@@ -1,0 +1,56 @@
+table zzz_costs
+	lineageTag: c60dc4cb-79b9-47d1-aaa6-30f7d990c608
+
+	column zzz_costs
+		lineageTag: 7400f9d8-5e30-4aa4-b7fd-043761fb2714
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'zzz_costs Order'
+
+		relatedColumnDetails
+			groupByColumn: 'zzz_costs Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zzz_costs Fields'
+		isHidden
+		lineageTag: 73b235a9-4754-4206-937b-c972426ce740
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'zzz_costs Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zzz_costs Order'
+		isHidden
+		formatString: 0
+		lineageTag: c2c3aee6-85ef-40ba-b941-4a6a52af44ec
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title = zzz_costs[zzz_costs]
+		lineageTag: 858513f3-05bc-4e8c-b184-e94fafd1b8d7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition zzz_costs = calculated
+		mode: import
+		source =
+				{
+				    ("Base Cost Of Encounters", NAMEOF('Metrics'[Base Cost of Encounters]), 0),
+				    ("Cost Of Immunizations", NAMEOF('Metrics'[Cost of Immunizations]), 1),
+				    ("Cost Of Procedures", NAMEOF('Metrics'[Cost of Procedures]), 2),
+				    ("Payer Coverage", NAMEOF('Metrics'[Payer Coverage]), 3)
+				}
+
+	annotation PBI_Id = 3cab747fc85b406194fdf2e81ad705ee
+

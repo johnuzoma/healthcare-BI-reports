@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "94efa3460fbcfa1cd5ea",
+  "displayName": "Admissions Within 10 days of Non Ip Visit",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "5bc68f61f4cefbc3351b",
+      "target": "0bf2027bc2bc77a77050",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5bc68f61f4cefbc3351b",
+      "target": "1449e9a0496e3311a510",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5bc68f61f4cefbc3351b",
+      "target": "efbc765708dd245b0c52",
+      "type": "NoFilter"
+    }
+  ]
+}

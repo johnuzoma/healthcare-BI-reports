@@ -1,0 +1,49 @@
+table zzz_display_by
+	lineageTag: e4ffc3d0-459f-460c-ba81-e74e175fe118
+
+	column zzz_display_by
+		lineageTag: 7ef8b9de-7307-4af2-ab8d-0c974e7955cc
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'zzz_display_by Order'
+
+		relatedColumnDetails
+			groupByColumn: 'zzz_display_by Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zzz_display_by Fields'
+		isHidden
+		lineageTag: 9c1fe147-5788-48ee-ab46-2b820e19ed63
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'zzz_display_by Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'zzz_display_by Order'
+		isHidden
+		formatString: 0
+		lineageTag: 527c06c4-c9c6-4c89-87a0-3b2f9e2bf556
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition zzz_display_by = calculated
+		mode: import
+		source =
+				{
+				    ("Org Name", NAMEOF('dim_organizations'[Org Name]), 0),
+				    ("Provider Specialty", NAMEOF('dim_providers'[Specialty]), 1),
+				    ("Provider Name", NAMEOF('dim_providers'[Provider Name]), 2)
+				}
+
+	annotation PBI_Id = 57735026ba45413d9c60ad488dbbb0c3
+

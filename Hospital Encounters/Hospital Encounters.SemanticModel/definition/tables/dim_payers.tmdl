@@ -1,0 +1,124 @@
+table dim_payers
+	lineageTag: 85376bae-ae75-492e-b2c3-73a63416cec2
+
+	column City
+		dataType: string
+		lineageTag: 3f8c023c-60c0-439b-a80d-84be29b2aac5
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount Covered'
+		dataType: double
+		lineageTag: fe10c1aa-a0a6-4365-a90a-d411f08a2466
+		summarizeBy: none
+		sourceColumn: Amount Covered
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Amount Uncovered'
+		dataType: double
+		lineageTag: 8bc5f6bf-3d75-4689-ba25-38748c755a17
+		summarizeBy: none
+		sourceColumn: Amount Uncovered
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Revenue
+		dataType: double
+		lineageTag: b6047d2b-a07e-44bf-bb85-b80c894333b2
+		summarizeBy: none
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Covered Medications'
+		dataType: int64
+		formatString: 0
+		lineageTag: 48a65dc1-a5e9-43d5-9a6f-5798b97eb42f
+		summarizeBy: none
+		sourceColumn: Covered Medications
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Uncovered Medications'
+		dataType: int64
+		formatString: 0
+		lineageTag: b169e3e8-399c-4a9a-9a0b-c729c53e840b
+		summarizeBy: none
+		sourceColumn: Uncovered Medications
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unique Customers'
+		dataType: int64
+		formatString: 0
+		lineageTag: fe432126-f844-48cd-af11-f06676a7e1a7
+		summarizeBy: none
+		sourceColumn: Unique Customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Member Months'
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a7a5ce-1821-40d4-9ded-980106232f34
+		summarizeBy: none
+		sourceColumn: Member Months
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: string
+		lineageTag: d6843f59-5df4-4143-a62c-692bf25b25cf
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payer Name'
+		dataType: string
+		lineageTag: e0f130a6-13dc-4b64-b28c-f44ca41d61e7
+		summarizeBy: none
+		sourceColumn: Payer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Avg Qols'
+		dataType: double
+		lineageTag: 9c73a87a-4f23-4bbf-b4e6-a7f7c8e9a651
+		summarizeBy: none
+		sourceColumn: Avg Qols
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_payers = m
+		mode: import
+		queryGroup: dimensions
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-804f31be-34e5.cloud.databricks.com", "/sql/1.0/warehouses/d96e38edcb956a66", [Catalog="synthea_ehr", Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation=null, Protocol=null]),
+				    synthea_ehr_Database = Source{[Name="synthea_ehr",Kind="Database"]}[Data],
+				    #"3_gold_Schema" = synthea_ehr_Database{[Name="3_gold",Kind="Schema"]}[Data],
+				    dim_payers_Table = #"3_gold_Schema"{[Name="dim_payers",Kind="Table"]}[Data],
+				    #"Removed Other Columns" = Table.SelectColumns(dim_payers_Table,{"id", "payer_name", "city", "amount_covered", "amount_uncovered", "revenue", "covered_medications", "uncovered_medications", "unique_customers", "avg_qols", "member_months"}),
+				    #"Standardized Field Names" = Table.TransformColumnNames(
+				        #"Removed Other Columns",
+				        each Text.Proper(Text.Replace(_, "_", " "))
+				    )
+				in
+				    #"Standardized Field Names"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
